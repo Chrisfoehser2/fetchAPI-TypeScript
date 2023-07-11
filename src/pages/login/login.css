@@ -1,0 +1,78 @@
+.login-wraper {
+  background-color: rgba(242, 225, 227, 0.841);
+  width: 600px;
+  height: calc(100vh - 4em);
+
+  overflow-y: hidden;
+  box-shadow: 0 0 6px 2px rgba(130, 124, 124, 0.628);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3em;
+  font-family: sans-serif;
+  letter-spacing: 0.1em;
+}
+@media screen and (min-width: 1800px) {
+  .login-wraper {
+    box-shadow: 6px 0 8px -3px rgba(130, 124, 124, 0.628);
+  }
+}
+.login-wraper input {
+  width: 25em;
+  height: 2em;
+  padding-left: 1em;
+  border: none;
+  border-radius: 5px;
+  margin: 0.5em;
+  border-bottom: 1px solid rgb(156, 145, 145);
+  background-color: rgb(255, 255, 255);
+}
+
+.login-wraper h3 {
+  margin-left: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.login-wraper button {
+  margin: 0.5em auto 1em auto;
+  display: block;
+  height: 2em;
+  width: 10em;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 0.5px solid rgb(88, 29, 117);
+  background-color: #ffa900;
+  letter-spacing: 0.1em;
+  text-shadow: 0px 2px 4px rgba(145, 141, 141, 0.552);
+  text-transform: uppercase;
+}
+.login-wraper button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  background: linear-gradient(#7d1f70, #551653);
+  color: white;
+}
+
+.legend-text {
+  font-size: 34px;
+  padding-bottom: 1em;
+  text-shadow: 0 5px 7px rgba(135, 129, 129, 0.782);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.text-wrapper {
+  text-align: center;
+  padding: 1.5em 2.3em;
+}
+
+.p-1 {
+  font-weight: bold;
+  font-style: italic;
+  padding: 1em;
+}
+.p-tags {
+  padding: 0.2em;
+  line-height: 1.5em;
+}
