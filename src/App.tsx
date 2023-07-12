@@ -24,6 +24,7 @@ const router = createBrowserRouter(
       }
     >
       <Route index element={<Login />} />
+
       <Route
         path="/home"
         element={
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+
       <Route
         path="/dog-match"
         element={
@@ -40,6 +42,7 @@ const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+
       <Route path="*" element={<Error />} />
     </Route>
   )

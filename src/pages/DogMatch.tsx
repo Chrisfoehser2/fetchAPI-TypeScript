@@ -23,6 +23,7 @@ function DogFound() {
       <div className="dog-found-container">
         <div>
           <h3>Congratulations!, You found a new family member</h3>
+
           <div className="dog-found">
             <DogData dog={finalDog} />
           </div>

@@ -8,8 +8,8 @@ export default function Login() {
   const { loggedIn, setLoggedIn } = useAuthContext();
   const navigate = useNavigate();
 
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [errors, setErrors] = useState({ email: "", userName: "" });
 
   const validateFields = () => {
@@ -27,17 +27,17 @@ export default function Login() {
     localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
   }, [loggedIn]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     validateFields();
     e.preventDefault();
     authLogin(userName, email)
       .then((response) => {
-        if (response.ok) {
+        if (response?.ok) {
           setLoggedIn(true);
           navigate("/home");
         }
       })
-      .catch((e) => {
+      .catch(() => {
         console.log(errors);
       });
   };
@@ -45,8 +45,10 @@ export default function Login() {
   return (
     <div className="login-wraper">
       <h1 className="legend-text">Login To Fetch Your Friend </h1>
+
       <form onSubmit={handleSubmit}>
         <h3> Name</h3>
+
         <input
           placeholder="Full Name..."
           value={userName}
@@ -54,9 +56,11 @@ export default function Login() {
           onChange={(e) => setUserName(e.target.value)}
           required
         />
+
         <br />
 
         <h3>Email</h3>
+
         <input
           placeholder="Email..."
           value={email}
@@ -64,15 +68,19 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <br />
+
         <button type="submit"> Login</button>
       </form>
 
       <div className="text-wrapper">
         <p className="p-1">"The place to come for your furry friend!"</p>
+
         <p className="p-tags">
           With 100's of puppers in need of a new family and forever home.{" "}
         </p>
+
         <p className="p-tags">
           Login with your <b>name</b> and <b>email</b> today to start fetching!
           Once logged in you'll be able to search through all your favorite

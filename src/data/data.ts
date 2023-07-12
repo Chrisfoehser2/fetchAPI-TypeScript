@@ -27,7 +27,7 @@ const Sort = [
 ];
 const Max_Age = { value: 14, label: 14 };
 const Min_Age = { value: 1, label: 1 };
-const Age_Menu = Array.from({ length: Max_Age.value }, (_, i) => i + 1);
+const Age_Menu = Array.from({ length: Max_Age.value }, (_, i: number) => i + 1);
 
 export {
   Fetch_Api,

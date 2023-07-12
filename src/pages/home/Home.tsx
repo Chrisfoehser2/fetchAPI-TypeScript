@@ -56,19 +56,22 @@ export default function Home() {
     fetchDogs(query);
   }, []);
   useEffect(() => {
+    // @ts-expect-error -- TODO: Variable 'cities' implicitly has type 'any[]' in some locations where its type cannot be determined.
     const cities = [];
     selectedStates.forEach((state) =>
       cities.push(...getCityByState(state.value).map((city) => city.name))
     );
+    // @ts-expect-error -- TODO: Variable 'cities' implicitly has an 'any[]' type.
     setCities(cities);
   }, [selectedStates]);
 
-  const fetchDogs = (query) => {
+  const fetchDogs = (query: string) => {
     getDogIds(query).then((data) => {
       setTotal(data.total);
       setNextpage(data.next);
       setPrevpage(data.prev);
       getDogData(data.resultIds).then((data) => {
+        // @ts-expect-error -- TODO: Parameter 'dog' implicitly has an 'any' type.
         let arr = data.map((dog) => {
           return { ...dog, isSelected: false };
         });
@@ -77,7 +80,7 @@ export default function Home() {
     });
   };
 
-  const getCurrPage = (pageNumber) => {
+  const getCurrPage = (pageNumber: number) => {
     const from = (pageNumber - 1) * 30;
     fetchDogs(curPage + `sort=breed:${selectedSort.value}&` + "from=" + from);
   };
@@ -90,18 +93,25 @@ export default function Home() {
 
   const getZipCodes = async () => {
     const locations = await getLocation(selectedStates, selectedcity);
-    return locations.results.map((location) => location.zip_code);
+    return locations.results.map(
+      (location: { zip_code: any }) => location.zip_code
+    );
   };
 
+  // @ts-expect-error -- TODO: Parameter 'data' implicitly has an 'any' type.
   const handleSelectedStates = (data) => {
     setSelectedStates(data);
   };
 
-  const handleSelectedCity = (data) => {
+  const handleSelectedCity = (data: {
+    value: (prevState: undefined) => undefined;
+  }) => {
     setAlert(false);
+    // @ts-expect-error -- TODO: Argument of type '"" | ((prevState: undefined) => undefined)' is not assignable to parameter of type '(prevState: undefined) => undefined'.
     setSelectedcity(data ? data.value : "");
   };
 
+  // @ts-expect-error -- TODO: Parameter 'data' implicitly has an 'any' type.
   const handleSelectedBreeds = (data) => {
     setSelectedBreeds(data);
   };
@@ -110,7 +120,7 @@ export default function Home() {
     setDogMatch(selectedDogCards);
   };
 
-  const getSearchQuery = (zipCodes) => {
+  const getSearchQuery = (zipCodes: any[]) => {
     let query = Default_Search + `sort=breed:${selectedSort.value}&`;
     query += selectedBreeds
       .map((breed) => `dogBreeds=${breed.value}&`)
@@ -156,8 +166,10 @@ export default function Home() {
               Find a Match
             </button>
           </div>
+
           <div className="dog-search-filters-header">
             <h3>Filters</h3>
+
             <button onClick={handleSearch}>Search</button>
           </div>
 
@@ -167,6 +179,7 @@ export default function Home() {
             value={[minAge]}
             onChange={setMinAge}
           />
+
           <SearchFilters
             name="MAX AGE"
             data={Age_Menu}
@@ -182,6 +195,7 @@ export default function Home() {
               <p>Maximum Age Cannot be less than Minimum Age</p>
             </Alert>
           )}
+
           <SearchFilters
             name="SORT BY"
             options={Sort}
@@ -199,6 +213,7 @@ export default function Home() {
               isMulti
             />
           </>
+
           <>
             <SearchFilters
               name="STATES"
@@ -209,6 +224,7 @@ export default function Home() {
               isMulti
             />
           </>
+
           <>
             <SearchFilters
               name="CITIES"
@@ -218,6 +234,7 @@ export default function Home() {
               isClearable={true}
             />
           </>
+
           <div className="alert-message">
             {alert && (
               <Alert
@@ -230,6 +247,7 @@ export default function Home() {
             )}
           </div>
         </div>
+
         <div className="dog-search-page">
           <DogCards
             dogs={dogs}

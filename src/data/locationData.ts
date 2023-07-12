@@ -7,15 +7,16 @@ export const getStates = State.getStatesOfCountry("US").map(
 
 export const getCities = City.getCitiesOfCountry("US");
 
-export const getCityByState = (state) => {
+export const getCityByState = (state: string) => {
   return City.getCitiesOfState("US", state);
 };
 
-export const getLocation = async (states, city) => {
+export const getLocation = async (states: any[], city: undefined) => {
   const payload = {
     states: states,
     city: city,
   };
+// @ts-expect-error -- TODO: Argument of type '{ method: string; body: string; credentials: string; mode: string; cache: string; headers: Headers; referrerPolicy: string; }' is not assignable to parameter of type 'RequestInit'.
   return fetch(Fetch_Api + "/locations/search", {
     ...Set_Options,
     method: "POST",

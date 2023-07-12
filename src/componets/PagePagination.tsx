@@ -1,10 +1,16 @@
+interface PagePaginationProps {
+  onPageChange: (pageNumber: number) => void;
+  nextPage: () => void;
+  prevPage: () => void;
+  total: number;
+}
 import { Data_Per_Page, Max_Page } from "../data/data";
 import Pagination from "react-bootstrap/Pagination";
 import PageItem from "react-bootstrap/PageItem";
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function PagePagination(props) {
+export default function PagePagination(props: PagePaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [startPageIndex, setStartPageIndex] = useState(1);
   const [endPageIndex, setEndPageIndex] = useState(Max_Page);
@@ -42,15 +48,17 @@ export default function PagePagination(props) {
     }
   };
 
+  // @ts-expect-error -- TODO: Parameter 'e' implicitly has an 'any' type.
   const handlePageClick = (e) => {
     props.onPageChange(e.target.text);
     setCurrentPage(parseInt(e.target.text));
   };
 
   const RenderItem = () => {
-    const item = [];
+    const item: Element[] = [];
     for (let page = startPageIndex; page <= endPageIndex; page++) {
       item.push(
+        // @ts-expect-error -- TODO: Cannot use JSX unless the '--jsx' flag is provided. Argument of type 'React.JSX.Element' is not assignable to parameter of type 'Element'.
         <PageItem
           key={page}
           onClick={(e) => handlePageClick(e)}
@@ -69,6 +77,7 @@ export default function PagePagination(props) {
     <Pagination>
       <Pagination.Prev onClick={handlePrevPage} />
       {RenderItem()}
+
       <Pagination.Next onClick={handleNextPage} />
     </Pagination>
   );

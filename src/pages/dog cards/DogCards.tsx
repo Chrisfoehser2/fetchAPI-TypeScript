@@ -1,7 +1,18 @@
+interface dogProps {
+  dogs: any[];
+  selectedDogCards: any[];
+  // @ts-expect-error -- TODO: Cannot find name 'Dispatch'. Cannot find name 'SetStateAction'.
+  setSelectedDogCards: Dispatch<SetStateAction<any[]>>;
+}
+
 import DogData from "./DogData";
 import "./dogs.css";
 
-export default function dog({ dogs, selectedDogCards, setSelectedDogCards }) {
+export default function dog({
+  dogs,
+  selectedDogCards,
+  setSelectedDogCards,
+}: dogProps) {
   if (dogs.length === 0) {
     return (
       <div>
@@ -10,6 +21,7 @@ export default function dog({ dogs, selectedDogCards, setSelectedDogCards }) {
     );
   }
 
+  // @ts-expect-error -- TODO: Parameter 'id' implicitly has an 'any' type.
   const handleCardSelect = (id) => {
     if (!selectedDogCards.includes(id)) {
       setSelectedDogCards([...selectedDogCards, id]);

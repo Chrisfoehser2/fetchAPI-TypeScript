@@ -1,6 +1,12 @@
+interface DogDataProps {
+  dog: {} | any;
+  isSelected?: any;
+  onSelect?: (id: any) => void;
+}
 import "./dogs.css";
 
-export default function DogData({ dog, isSelected, onSelect }) {
+export default function DogData({ dog, isSelected, onSelect }: DogDataProps) {
+  // @ts-expect-error -- TODO: Parameter 'id' implicitly has an 'any' type.
   const handleSelect = (id) => {
     if (onSelect) {
       onSelect(id);
@@ -13,6 +19,7 @@ export default function DogData({ dog, isSelected, onSelect }) {
       onClick={() => handleSelect(dog.id)}
     >
       <img src={dog.img} />
+
       <div className="dog-info">
         {dog.breed}
         <br />
