@@ -16,6 +16,7 @@ export default function NavBar() {
   return (
     <div className="nav-bar">
       <h1>Fetch Your Friend</h1>
+
       <div className="name-login-logout">
         {loggedIn && (
           <>
