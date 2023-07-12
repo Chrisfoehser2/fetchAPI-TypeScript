@@ -2,7 +2,7 @@ interface dogProps {
   dogs: any[];
   selectedDogCards: any[];
   // @ts-expect-error -- TODO: Cannot find name 'Dispatch'. Cannot find name 'SetStateAction'.
-  setSelectedDogCards: Dispatch<SetStateAction<any[]>>;
+  setSelectedDogCards: Dispatch<React.SetStateAction<any[]>>;
 }
 
 import DogData from "./DogData";
@@ -21,8 +21,7 @@ export default function dog({
     );
   }
 
-  // @ts-expect-error -- TODO: Parameter 'id' implicitly has an 'any' type.
-  const handleCardSelect = (id) => {
+  const handleCardSelect = (id: string) => {
     if (!selectedDogCards.includes(id)) {
       setSelectedDogCards([...selectedDogCards, id]);
     } else {

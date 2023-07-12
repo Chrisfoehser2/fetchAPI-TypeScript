@@ -6,8 +6,7 @@ interface DogDataProps {
 import "./dogs.css";
 
 export default function DogData({ dog, isSelected, onSelect }: DogDataProps) {
-  // @ts-expect-error -- TODO: Parameter 'id' implicitly has an 'any' type.
-  const handleSelect = (id) => {
+  const handleSelect = (id: string) => {
     if (onSelect) {
       onSelect(id);
     }

@@ -1,14 +1,15 @@
+import { Data_Per_Page, Max_Page } from "../data/data";
+import Pagination from "react-bootstrap/Pagination";
+import PageItem from "react-bootstrap/PageItem";
+import { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 interface PagePaginationProps {
   onPageChange: (pageNumber: number) => void;
   nextPage: () => void;
   prevPage: () => void;
   total: number;
 }
-import { Data_Per_Page, Max_Page } from "../data/data";
-import Pagination from "react-bootstrap/Pagination";
-import PageItem from "react-bootstrap/PageItem";
-import { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function PagePagination(props: PagePaginationProps) {
   const [currentPage, setCurrentPage] = useState(1);

@@ -2,6 +2,7 @@ import { useState, createContext, useContext, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 // @ts-expect-error -- TODO: Cannot find name 'ContextProps'.
+
 const AuthContext = createContext({} as ContextProps);
 
 export function useAuthContext() {

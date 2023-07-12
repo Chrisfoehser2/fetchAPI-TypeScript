@@ -1,8 +1,12 @@
 import { Navigate } from "react-router-dom";
+import { ReactNode } from "react";
 import { useAuthContext } from "../context/AuthContext";
 
-// @ts-expect-error -- TODO: Binding element 'children' implicitly has an 'any' type.
-export const ProtectedRoute = ({ children }) => {
+type ProtectedRouteType = {
+  children: ReactNode;
+};
+
+export const ProtectedRoute = ({ children }: ProtectedRouteType) => {
   const { loggedIn } = useAuthContext();
   if (!loggedIn) {
     // user is not authenticated
