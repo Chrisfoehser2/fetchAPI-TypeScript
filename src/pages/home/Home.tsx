@@ -120,7 +120,6 @@ export default function Home() {
   const handleMatch = async () => {
     setDogMatch(selectedDogCards);
   };
-  // TODO: Parameter 'breed' implicitly has an 'any' type.
 
   type BreedProps = {
     value: string[];
