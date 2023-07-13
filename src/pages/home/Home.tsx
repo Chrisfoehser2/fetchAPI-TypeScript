@@ -45,8 +45,8 @@ export default function Home() {
 
   useEffect(() => {
     localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
-    if (loggedIn) {
-      navigate("/home");
+    if (!loggedIn) {
+      navigate("/");
     }
   }, [loggedIn]);
 
@@ -55,6 +55,7 @@ export default function Home() {
     getBreeds().then((data) => setDogBreeds(data));
     fetchDogs(query);
   }, []);
+
   useEffect(() => {
     // @ts-expect-error -- TODO: Variable 'cities' implicitly has type 'any[]' in some locations where its type cannot be determined.
     const cities = [];
@@ -120,10 +121,15 @@ export default function Home() {
     setDogMatch(selectedDogCards);
   };
   // TODO: Parameter 'breed' implicitly has an 'any' type.
+
+  type BreedProps = {
+    value: string[];
+  };
+
   const getSearchQuery = (zipCodes: string[]) => {
     let query = Default_Search + `sort=breed:${selectedSort.value}&`;
     query += selectedBreeds
-      .map((breed: any) => `dogBreeds=${breed.value}&`) //Error .value
+      .map((breed: BreedProps) => `dogBreeds=${breed.value}&`)
       .join("");
     query += zipCodes.map((zipcode) => `zipCodes=${zipcode}&`).join("");
     return query + `ageMin=${minAge.value}&ageMax=${maxAge.value}&`;

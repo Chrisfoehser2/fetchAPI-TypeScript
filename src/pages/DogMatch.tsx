@@ -7,8 +7,12 @@ import "./dog cards/dogs.css";
 
 function DogFound() {
   const [finalDog, setFinalDog] = useState({});
-  const { selectedDogs } = useAuthContext();
+  const { selectedDogs, loggedIn } = useAuthContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem("loggedIn", JSON.stringify(loggedIn));
+  }, [loggedIn]);
 
   useEffect(() => {
     getMatch(selectedDogs).then((data) => {
