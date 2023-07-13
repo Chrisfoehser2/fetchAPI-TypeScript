@@ -56,10 +56,9 @@ export default function PagePagination(props: PagePaginationProps) {
   };
 
   const RenderItem = () => {
-    const item: Element[] = [];
+    const item: React.JSX.Element[] = [];
     for (let page = startPageIndex; page <= endPageIndex; page++) {
       item.push(
-        // @ts-expect-error -- TODO: Cannot use JSX unless the '--jsx' flag is provided. Argument of type 'React.JSX.Element' is not assignable to parameter of type 'Element'.
         <PageItem
           key={page}
           onClick={(e) => handlePageClick(e)}

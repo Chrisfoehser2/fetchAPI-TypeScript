@@ -1,12 +1,11 @@
-interface dogProps {
-  dogs: any[];
-  selectedDogCards: any[];
-  // @ts-expect-error -- TODO: Cannot find name 'Dispatch'. Cannot find name 'SetStateAction'.
-  setSelectedDogCards: Dispatch<React.SetStateAction<any[]>>;
-}
-
 import DogData from "./DogData";
 import "./dogs.css";
+
+interface dogProps {
+  dogs: any[];
+  selectedDogCards: string[];
+  setSelectedDogCards: React.Dispatch<React.SetStateAction<string[]>>;
+}
 
 export default function dog({
   dogs,

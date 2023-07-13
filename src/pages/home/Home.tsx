@@ -26,7 +26,7 @@ export default function Home() {
   const [selectedBreeds, setSelectedBreeds] = useState([]);
   const [dogs, setDogs] = useState([]);
   const [selectedSort, setSelectedSort] = useState(Sort[0]);
-  const [selectedDogCards, setSelectedDogCards] = useState([]);
+  const [selectedDogCards, setSelectedDogCards] = useState<string[]>([]);
   const [nextPage, setNextpage] = useState("");
   const [prevPage, setPrevpage] = useState("");
   const [curPage, setCurPage] = useState(Default_Search);
@@ -58,8 +58,9 @@ export default function Home() {
   useEffect(() => {
     // @ts-expect-error -- TODO: Variable 'cities' implicitly has type 'any[]' in some locations where its type cannot be determined.
     const cities = [];
-    selectedStates.forEach((state) =>
-      cities.push(...getCityByState(state.value).map((city) => city.name))
+    selectedStates.forEach(
+      (state: any) =>
+        cities.push(...getCityByState(state.value).map((city) => city.name)) // Error on .value
     );
     // @ts-expect-error -- TODO: Variable 'cities' implicitly has an 'any[]' type.
     setCities(cities);
@@ -71,8 +72,7 @@ export default function Home() {
       setNextpage(data.next);
       setPrevpage(data.prev);
       getDogData(data.resultIds).then((data) => {
-        // @ts-expect-error -- TODO: Parameter 'dog' implicitly has an 'any' type.
-        let arr = data.map((dog) => {
+        let arr = data.map((dog: string[]) => {
           return { ...dog, isSelected: false };
         });
         setDogs(arr);
@@ -94,7 +94,7 @@ export default function Home() {
   const getZipCodes = async () => {
     const locations = await getLocation(selectedStates, selectedcity);
     return locations.results.map(
-      (location: { zip_code: any }) => location.zip_code
+      (location: { zip_code: string }) => location.zip_code
     );
   };
 
@@ -119,11 +119,11 @@ export default function Home() {
   const handleMatch = async () => {
     setDogMatch(selectedDogCards);
   };
-
-  const getSearchQuery = (zipCodes: any[]) => {
+  // TODO: Parameter 'breed' implicitly has an 'any' type.
+  const getSearchQuery = (zipCodes: string[]) => {
     let query = Default_Search + `sort=breed:${selectedSort.value}&`;
     query += selectedBreeds
-      .map((breed) => `dogBreeds=${breed.value}&`)
+      .map((breed: any) => `dogBreeds=${breed.value}&`) //Error .value
       .join("");
     query += zipCodes.map((zipcode) => `zipCodes=${zipcode}&`).join("");
     return query + `ageMin=${minAge.value}&ageMax=${maxAge.value}&`;
