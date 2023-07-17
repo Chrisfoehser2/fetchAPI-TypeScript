@@ -20,8 +20,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [selectedDogs, setSelectedDogs] = useState<string[]>([]);
   const navigate = useNavigate();
 
-  // @ts-expect-error -- TODO: Parameter 'data' implicitly has an 'any' type.
-  function setDogMatch(data) {
+  function setDogMatch(data: string[]) {
     setSelectedDogs(data);
     navigate("/dog-match");
   }
