@@ -1,7 +1,14 @@
 interface DogDataProps {
-  dog: {} | any;
+  dog: {
+    id: string;
+    img: string;
+    breed: string;
+    name: string;
+    age: number;
+    zip_code: string;
+  };
   isSelected?: any;
-  onSelect?: (id: any) => void;
+  onSelect?: (id: string) => void;
 }
 import "./dogs.css";
 
