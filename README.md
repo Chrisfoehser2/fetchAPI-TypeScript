@@ -2,9 +2,6 @@
 
 Fetch API is an API built to help you fetch your best friend. The fetch API pulls in data from shelter homes all over the U.S. to help dog lovers all over fetch their best friend and help a dog in need. You can filter your results from different breeds, ASC to DSC, age and state/city allowing you to find the perfect match. Once you have narrowed your selection down, you will be able to select dogs that match you. After you have your selected dogs picked, you'll be able to click the MATCH button and it will match you with your best friend out of the selected dogs. Fetch API is built on Vite React and uses React-Router and React-Bootstrap to help run.
 
-- This app is being transitioned to TypeScript from Vite React.js. It currently runs how it should, but does have a few remaining TypeScripts errors that are being worked on from transistioning from Reactjs.
-- Unit Tests are being implemented and will show in the Git Repo in the the near future. Did not feel great listing the tests I had yet as I am still learning unit testing.
-
 ## Live Site
 
 View live site here: [https://fetchafriend.netlify.app]

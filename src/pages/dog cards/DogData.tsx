@@ -10,6 +10,8 @@ interface DogDataProps {
   isSelected?: any;
   onSelect?: (id: string) => void;
 }
+
+// dog: {} | any
 import "./dogs.css";
 
 export default function DogData({ dog, isSelected, onSelect }: DogDataProps) {
